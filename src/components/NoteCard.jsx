@@ -8,7 +8,7 @@ function NoteCard({
 	title,
 	createdAt,
 	body,
-	isArchive,
+	archived,
 	onDelete,
 	onArchive,
 }) {
@@ -17,8 +17,14 @@ function NoteCard({
 			<div className="note-item__content">
 				<NoteHeader title={title} createdAt={createdAt} />
 				<NoteBody body={body} />
-				<NoteAction id={id} onDelete={onDelete} onArchive={onArchive} isArchive={isArchive} />
 			</div>
+
+			<NoteAction
+				id={id}
+				onDelete={onDelete}
+				onArchive={onArchive}
+				archived={archived}
+			/>
 		</div>
 	);
 }
