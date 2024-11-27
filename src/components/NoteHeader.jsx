@@ -2,9 +2,9 @@ import React from "react";
 
 function NoteHeader({ title, createdAt }) {
 	return (
-		<div className="note-header">
-			<h3 className="note-header__title">{title}</h3>
-			<p className="note-header__date">{createdAt}</p>
+		<div className="note-item__content">
+			<h3 className="note-item__title">{title}</h3>
+			<p className="note-item__date">{createdAt}</p>
 		</div>
 	);
 }

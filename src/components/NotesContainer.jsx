@@ -1,11 +1,10 @@
 import React from "react";
 import NoteCard from "./NoteCard";
 
-function NotesContainer({ notesTitle, notes, onDelete, onArchive }) {
+function NotesContainer({ notes, onDelete, onArchive }) {
 	return (
-		<div className="card-list">
+		<div className="notes-list">
 			{/* TODO: change to variable instead */}
-			<h2>{notesTitle}</h2>
 			{notes.map((note) => (
 				<NoteCard
 					key={note.id}

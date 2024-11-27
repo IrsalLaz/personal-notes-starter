@@ -47,20 +47,28 @@ class CreateNotes extends React.Component {
 
 	render() {
 		return (
-			<form className="create-note" onSubmit={this.onSubmitHandler}>
-				<input
-					type="text"
-					name="title"
-					id="title"
-					placeholder="Ini adalah judul..."
-				/>
-				<textarea
-					name="body"
-					id="body"
-					placeholder="Tuliskan catatanmu di sini"
-				></textarea>
-				<button type="submit">Buat</button>
-			</form>
+			<div className="note-input">
+				<h2>Buat Catatan</h2>
+
+				{/*	TODO add character counter */}
+				<p className="note-input__title__char-limit">sisa karakter: </p>
+				<form className="create-note" onSubmit={this.onSubmitHandler}>
+					<input
+						className="note-input__title"
+						type="text"
+						name="title"
+						id="title"
+						placeholder="Ini adalah judul..."
+					/>
+					<textarea
+						className="note-input__body"
+						name="body"
+						id="body"
+						placeholder="Tuliskan catatanmu di sini"
+					></textarea>
+					<button type="submit">Buat</button>
+				</form>
+			</div>
 		);
 	}
 }

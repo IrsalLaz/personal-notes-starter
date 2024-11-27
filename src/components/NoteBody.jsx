@@ -2,7 +2,7 @@ import React from "react";
 
 function NoteBody({ body }) {
 	return (
-		<div className="note-body">
+		<div className="note-item__body">
 			<p>{body}</p>
 		</div>
 	);
