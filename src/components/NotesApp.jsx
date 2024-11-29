@@ -8,16 +8,20 @@ class NotesApp extends React.Component {
 	constructor(props) {
 		super(props);
 
+		const initialData = getInitialData();
+		const notes = initialData.filter((note) => note.archived === false);
+		const archived_notes = initialData.filter((note) => note.archived === true);
+
 		this.state = {
-			notes: getInitialData().filter((note) => note.archived === false),
-			// get initial data that archived is true
-			archived_notes: getInitialData().filter((note) => note.archived === true),
+			notes: notes,
+			archived_notes: archived_notes,
 		};
 
 		this.onDeleteHandler = this.onDeleteHandler.bind(this);
 		this.onArchiveHandler = this.onArchiveHandler.bind(this);
 		this.onMoveHandler = this.onMoveHandler.bind(this);
 		this.onAddNotesHandler = this.onAddNotesHandler.bind(this);
+		this.onSearchInputHandler = this.onSearchInputHandler.bind(this);
 	}
 
 	onDeleteHandler(id) {
@@ -42,11 +46,8 @@ class NotesApp extends React.Component {
 	}
 
 	onMoveHandler(id) {
-		console.log(id);
 		const notes = this.state.archived_notes.filter((note) => note.id === id);
 
-		console.log(notes);
-		console.log(notes[0].archived);
 		notes[0].archived = false;
 
 		this.setState((prevState) => {
@@ -76,10 +77,34 @@ class NotesApp extends React.Component {
 		});
 	}
 
+	onSearchInputHandler(event) {
+		// get the search value
+		const keyword = event.target.value.toLowerCase();
+
+		// filter notes based on keyword
+		this.setState(() => {
+			if (keyword === "") {
+				return {
+					notes: this.state.notes,
+					archived_notes: this.state.archived_notes,
+				};
+			} else {
+				return {
+					notes: this.state.notes.filter((note) =>
+						note.title.toLowerCase().includes(keyword)
+					),
+					archived_notes: this.state.archived_notes.filter((note) =>
+						note.title.toLowerCase().includes(keyword)
+					),
+				};
+			}
+		});
+	}
+
 	render() {
 		return (
 			<>
-				<Navbar />
+				<Navbar onSearch={this.onSearchInputHandler} />
 				<main className="note-app__body">
 					<CreateNotes addNotes={this.onAddNotesHandler} />
 
