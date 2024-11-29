@@ -7,7 +7,7 @@ class CreateNotes extends React.Component {
 		this.state = {
 			title: "",
 			body: "",
-			isArchive: false,
+			archived: false,
 		};
 
 		this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -34,14 +34,14 @@ class CreateNotes extends React.Component {
 	onArchiveStatusChangeHandler(event) {
 		this.setState(() => {
 			return {
-				isArchive: event.target.value,
+				archived: event.target.value,
 			};
 		});
 	}
 
 	onSubmitHandler(event) {
 		event.preventDefault();
-		// thiss addNotes event comes from NotesApp
+		// this addNotes event comes from NotesApp
 		this.props.addNotes(this.state);
 	}
 
@@ -51,21 +51,25 @@ class CreateNotes extends React.Component {
 				<h2>Buat Catatan</h2>
 
 				{/*	TODO add character counter */}
-				<p className="note-input__title__char-limit">sisa karakter: </p>
+				<p className="note-input__title__char-limit">Sisa karakter: {50}</p>
 				<form className="create-note" onSubmit={this.onSubmitHandler}>
 					<input
 						className="note-input__title"
 						type="text"
 						name="title"
 						id="title"
+						maxLength={50}
 						placeholder="Ini adalah judul..."
+						onChange={this.onTitleChangeHandler}
 					/>
 					<textarea
 						className="note-input__body"
 						name="body"
 						id="body"
 						placeholder="Tuliskan catatanmu di sini"
+						onChange={this.onBodyChangeHandler}
 					></textarea>
+
 					<button type="submit">Buat</button>
 				</form>
 			</div>
