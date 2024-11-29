@@ -11,6 +11,7 @@ function NoteCard({
 	archived,
 	onDelete,
 	onArchive,
+	onMove,
 }) {
 	return (
 		<div className="note-item">
@@ -24,6 +25,7 @@ function NoteCard({
 				onDelete={onDelete}
 				onArchive={onArchive}
 				archived={archived}
+				onMove={onMove}
 			/>
 		</div>
 	);
