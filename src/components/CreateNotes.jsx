@@ -50,8 +50,9 @@ class CreateNotes extends React.Component {
 			<div className="note-input">
 				<h2>Buat Catatan</h2>
 
-				{/*	TODO add character counter */}
-				<p className="note-input__title__char-limit">Sisa karakter: {50}</p>
+				<p className="note-input__title__char-limit">
+					Sisa karakter: {50 - this.state.title.length}
+				</p>
 				<form className="create-note" onSubmit={this.onSubmitHandler}>
 					<input
 						className="note-input__title"
